@@ -249,7 +249,9 @@ def fetchDataFromDb():
 
             # image file write & close
             fileName= 'image' + vdo_id + '.jpg'
+            print(fileName)
             f = open(os.path.join(app.config['IMAGE_FOLDER'], 'images',fileName), 'wb')
+            print(fileName)
             f.write(img)
             f.close()
             print('image saved')
