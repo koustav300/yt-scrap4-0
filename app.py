@@ -228,7 +228,7 @@ def fetchDataFromDb():
 
     # step --4 creating download zip
     try:
-        IMAGE_FOLDER = 'static/images'
+        IMAGE_FOLDER = 'static'
         app.config['IMAGE_FOLDER'] = IMAGE_FOLDER
 
         # ------------creating the Zip
@@ -249,7 +249,7 @@ def fetchDataFromDb():
 
             # image file write & close
             fileName= 'image' + vdo_id + '.jpg'
-            f = open(os.path.join(app.config['IMAGE_FOLDER'], fileName), 'wb')
+            f = open(os.path.join(app.config['IMAGE_FOLDER'], 'images',fileName), 'wb')
             f.write(img)
             f.close()
             print('image saved')
