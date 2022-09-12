@@ -228,13 +228,13 @@ def fetchDataFromDb():
 
     # step --4 creating download zip
     try:
-        IMAGE_FOLDER = 'static'
+        IMAGE_FOLDER = 'static/images'
         app.config['IMAGE_FOLDER'] = IMAGE_FOLDER
 
         # ------------creating the Zip
         zipfolder = zipfile.ZipFile('Imagefiles.zip', 'w', compression=zipfile.ZIP_STORED)  # Compression type
         logger.debug('zipfolder created')
-        print('zip created')
+
         # ----------------processing the files
         for i in range(0, len(vdo_id_list)):
 
@@ -250,12 +250,12 @@ def fetchDataFromDb():
             # image file write & close
 
             fileName= 'image' + vdo_id + '.jpg'
-            fpath= os.path.join(app.config['IMAGE_FOLDER'],'images',fileName)
+            fpath= os.path.join(app.config['IMAGE_FOLDER'],fileName)
+            print(os.path.join(app.config['IMAGE_FOLDER'],fileName), )
             f = open(fpath, 'wb')
-            print(fileName)
+
             f.write(img)
             f.close()
-            print('image saved')
             # updating the zip
             zipfolder.write(os.path.join(app.config['IMAGE_FOLDER'], fileName))
             print('zip written')
