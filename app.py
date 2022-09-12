@@ -248,9 +248,10 @@ def fetchDataFromDb():
             img = requests.get(img_url).content
 
             # image file write & close
+
             fileName= 'image' + vdo_id + '.jpg'
-            print(fileName)
-            f = open(os.path.join(app.config['IMAGE_FOLDER'], 'images',fileName), 'wb')
+            fpath= os.path.join(app.config['IMAGE_FOLDER'],'images',fileName)
+            f = open(fpath, 'wb')
             print(fileName)
             f.write(img)
             f.close()
