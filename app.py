@@ -233,7 +233,8 @@ def fetchDataFromDb():
 
         # ------------creating the Zip
         zipfolder = zipfile.ZipFile('Imagefiles.zip', 'w', compression=zipfile.ZIP_STORED)  # Compression type
-
+        logger.debug('zipfolder created')
+        print('zip created')
         # ----------------processing the files
         for i in range(0, len(vdo_id_list)):
 
@@ -251,13 +252,15 @@ def fetchDataFromDb():
             f = open(os.path.join(app.config['IMAGE_FOLDER'], fileName), 'wb')
             f.write(img)
             f.close()
-
+            print('image saved')
             # updating the zip
             zipfolder.write(os.path.join(app.config['IMAGE_FOLDER'], fileName))
-
+            print('zip written')
             # removing the file
             os.remove(os.path.join(app.config['IMAGE_FOLDER'], fileName))
         zipfolder.close()
+        logger.debug('zipfolder created')
+        print('zip created')
 
 
     except Exception as e:
@@ -441,7 +444,7 @@ def vdoDownload():
                     'status': -1,
                     'errorMassage': f'Download SERVER is busy... Please RETRY, | Error key: {str(e)} '
                 }
-        if counter > vdo_limit:
+        if counter > vdo_limit -1:
             break  # if the limit is reached
 
     # Zip file Initialization
